@@ -19,6 +19,8 @@ namespace WeatherService
                 });
             services.AddMemoryCache();
             services.AddHostedService<WeatherWorker>();
+
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -36,6 +38,8 @@ namespace WeatherService
                 {
                     await context.Response.WriteAsync("Hello World!");
                 });
+
+                endpoints.MapControllers();
             });
         }
     }
