@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using WeatherService.Health;
 using WeatherService.Services;
 using WeatherService.Workers;
 
@@ -30,6 +31,9 @@ namespace WeatherService
             });
 
             services.AddGrpc();
+
+            services.AddHealthChecks()
+                .AddCheck<StalenessHealthCheck>("Staleness");
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -53,6 +57,8 @@ namespace WeatherService
                 {
                     await context.Response.WriteAsync("Hello World!");
                 });
+
+                endpoints.MapHealthChecks("/health");
 
                 endpoints.MapControllers();
                 endpoints.MapGrpcService<WeatherGrpcService>();
