@@ -1,8 +1,10 @@
+using System.Net.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WeatherService.Workers;
 
 namespace WeatherService
 {
@@ -10,6 +12,13 @@ namespace WeatherService
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient("AccuWeather")
+                .ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
+                {
+                    AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
+                });
+            services.AddMemoryCache();
+            services.AddHostedService<WeatherWorker>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
