@@ -7,12 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherService", "WeatherSe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherClient", "WeatherClient\WeatherClient.csproj", "{C2B3C3F3-766E-4805-AB04-719262C785CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitorService", "MonitorService\MonitorService.csproj", "{DBCAF8FE-2841-41FD-BDEF-471E7780F3EE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{BD77E80F-27B9-4265-B3A7-5DD0B2480D2F}"
-	ProjectSection(SolutionItems) = preProject
-		k8s\setup.sh = k8s\setup.sh
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonitorService", "MonitorService\MonitorService.csproj", "{DBCAF8FE-2841-41FD-BDEF-471E7780F3EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

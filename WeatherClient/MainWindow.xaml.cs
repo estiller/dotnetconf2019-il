@@ -18,7 +18,8 @@ namespace WeatherClient
         {
             base.OnInitialized(e);
 
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            //var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var channel = GrpcChannel.ForAddress("https://dotnetconfdemo.westeurope.cloudapp.azure.com/");
             var client = new WeatherService.Services.WeatherService.WeatherServiceClient(channel);
             var responseStream = client.GetWeatherStream(new Empty()).ResponseStream;
             await foreach (var response in responseStream.ReadAllAsync())

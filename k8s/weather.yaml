@@ -1,0 +1,40 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: weather
+  namespace: weather
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: weather
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: weather
+        image: dotnetconfdemo.azurecr.io/weatherservice:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: AccuWeatherToken
+          valueFrom:
+            secretKeyRef:
+              name: accuweather-token
+              key: accuweather-token
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: weather
+  namespace: weather
+spec:
+  type: ClusterIP
+  ports:
+    - name: h2c
+      protocol: TCP
+      port: 80
+  selector:
+    app: weather
