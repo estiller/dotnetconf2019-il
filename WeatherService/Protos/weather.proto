@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "WeatherService.Services";
+
+package Weather;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service WeatherService {
+	rpc GetWeather(google.protobuf.Empty) returns (WeatherResponse);
+	rpc GetWeatherStream(google.protobuf.Empty) returns (stream WeatherResponse);
+}
+
+message WeatherResponse {
+	string location = 1;
+	google.protobuf.Timestamp LocalObservationDateTime = 2;
+	string weatherText = 3;
+	string weatherIconUrl = 4;
+	float temperature = 5;
+	float pastDayMaxTemperature = 6;
+	float pastDayMinTemperature = 7;
+}

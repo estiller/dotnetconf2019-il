@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using WeatherService.Services;
 using WeatherService.Workers;
 
 namespace WeatherService
@@ -27,6 +28,8 @@ namespace WeatherService
             {
                 options.SwaggerDoc("v1", new OpenApiInfo {Title = "WeatherApi", Version = "v1"});
             });
+
+            services.AddGrpc();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -52,6 +55,7 @@ namespace WeatherService
                 });
 
                 endpoints.MapControllers();
+                endpoints.MapGrpcService<WeatherGrpcService>();
             });
         }
     }
