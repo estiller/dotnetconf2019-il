@@ -1,0 +1,39 @@
+﻿<Window x:Class="WeatherClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Weather Client" Height="300" Width="350">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Location:" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+        <Label Content="Timestamp:" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+        <Label Content="Weather Text:" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+        <Label Content="Weather Icon:" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="0"/>
+        <Label Content="Temperature:" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="0"/>
+        <Label Content="Temperature Max:" VerticalContentAlignment="Center" Grid.Row="5" Grid.Column="0"/>
+        <Label Content="Temperature Min:" VerticalContentAlignment="Center" Grid.Row="6" Grid.Column="0"/>
+
+        <TextBox Name="Location" VerticalContentAlignment="Center" IsReadOnly="True" Grid.Row="0" Grid.Column="1"/>
+        <TextBox Name="Timestamp" VerticalContentAlignment="Center" IsReadOnly="True" Grid.Row="1" Grid.Column="1"/>
+        <TextBox Name="WeatherText" VerticalContentAlignment="Center" IsReadOnly="True" Grid.Row="2" Grid.Column="1"/>
+        <Image Name="WeatherIcon" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="1"/>
+        <TextBox Name="Temperature" VerticalContentAlignment="Center" IsReadOnly="True" Grid.Row="4" Grid.Column="1"/>
+        <TextBox Name="TemperatureMax" VerticalContentAlignment="Center" IsReadOnly="True" Grid.Row="5" Grid.Column="1"/>
+        <TextBox Name="TemperatureMin" VerticalContentAlignment="Center" Grid.Row="6" Grid.Column="1"/>
+    </Grid>
+</Window>
