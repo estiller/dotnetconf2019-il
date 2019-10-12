@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>14-MonitorService-Worker-class-content</Title>
+        </Header>
+        <Snippet>
+            <Code Language="CSharp">
+                <![CDATA[
+        private readonly ILogger<Worker> _logger;
+        private readonly IConfiguration _configuration;
+
+        public Worker(ILogger<Worker> logger, IConfiguration configuration)
+        {
+            _logger = logger;
+            _configuration = configuration;
+        }
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                try
+                {
+                    var url = _configuration["ServiceUrl"];
+                    var client = new HttpClient { BaseAddress = new Uri(url) };
+                    var response = await client.GetAsync("health", stoppingToken);
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    _logger.LogInformation($$"Health status code: {response.StatusCode}. Response: {content}");
+                    await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError(e, "An unexpected exception occured");
+                }
+            }
+        }
+
+                    ]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

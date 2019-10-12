@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>12a-WeatherClient-MainWindow-OnInitialized-ForEach-content</Title>
+        </Header>
+        <Snippet>
+            <Code Language="CSharp">
+                <![CDATA[
+                Location.Text = response.Location;
+                Timestamp.Text = response.LocalObservationDateTime.ToDateTimeOffset().ToLocalTime().ToString();
+                WeatherText.Text = response.WeatherText;
+                WeatherIcon.Source = new BitmapImage(new Uri(response.WeatherIconUrl));
+                Temperature.Text = $$"{response.Temperature:##} ℃";
+                TemperatureMax.Text = $$"{response.PastDayMaxTemperature:##} ℃";
+                TemperatureMin.Text = $$"{response.PastDayMinTemperature:##} ℃";
+                    ]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

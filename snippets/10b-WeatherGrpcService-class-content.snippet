@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>10b-WeatherGrpcService-class-content</Title>
+        </Header>
+        <Snippet>
+            <Code Language="CSharp">
+                <![CDATA[
+        private readonly IMemoryCache _cache;
+
+        public WeatherGrpcService(IMemoryCache cache)
+        {
+            _cache = cache;
+        }
+
+        public override Task<WeatherResponse> GetWeather(Empty request, ServerCallContext context)
+        {
+            var weather = _cache.Get<Weather>("LatestWeather");
+            return Task.FromResult(ToWeatherResponse(weather));
+        }
+
+
+        public override async Task GetWeatherStream(Empty request, IServerStreamWriter<WeatherResponse> responseStream, ServerCallContext context)
+        {
+            while (!context.CancellationToken.IsCancellationRequested)
+            {
+                var weather = _cache.Get<Weather>("LatestWeather");
+                await responseStream.WriteAsync(ToWeatherResponse(weather));
+                await Task.Delay(TimeSpan.FromSeconds(2));
+            }
+        }
+
+        private static WeatherResponse ToWeatherResponse(Weather weather)
+        {
+            var weatherResponse = new WeatherResponse
+            {
+                Location = weather.Location,
+                LocalObservationDateTime = Timestamp.FromDateTimeOffset(weather.LocalObservationDateTime),
+                WeatherText = weather.WeatherText,
+                WeatherIconUrl = weather.WeatherIconUrl,
+                Temperature = weather.Temperature,
+                PastDayMaxTemperature = weather.PastDayMaxTemperature,
+                PastDayMinTemperature = weather.PastDayMinTemperature
+            };
+            return weatherResponse;
+        }
+
+                    ]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

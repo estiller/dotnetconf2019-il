@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>04-WeatherService-Weather-model-class-content</Title>
+        </Header>
+        <Snippet>
+            <Code Language="CSharp">
+                <![CDATA[
+        public Weather(string location, DateTimeOffset localObservationDateTime, string weatherText, string weatherIconUrl,
+            float temperature, float pastDayMaxTemperature, float pastDayMinTemperature)
+        {
+            Location = location;
+            LocalObservationDateTime = localObservationDateTime;
+            WeatherText = weatherText;
+            WeatherIconUrl = weatherIconUrl;
+            Temperature = temperature;
+            PastDayMaxTemperature = pastDayMaxTemperature;
+            PastDayMinTemperature = pastDayMinTemperature;
+        }
+
+        public string Location { get; }
+        public DateTimeOffset LocalObservationDateTime { get; }
+        public string WeatherText { get; }
+        public string WeatherIconUrl { get; }
+        public float Temperature { get; }
+        public float PastDayMaxTemperature { get; }
+        public float PastDayMinTemperature { get; }
+    }
+                    ]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
