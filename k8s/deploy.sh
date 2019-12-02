@@ -9,7 +9,7 @@ helm init --history-max 200 --service-account tiller --node-selectors "beta.kube
 # Deploy static IP Address
 NODE_RESOURCE_GROUP=$(az aks show --resource-group dotnetconfdemo --name dotnetconfdemo --query nodeResourceGroup -o tsv)
 echo $NODE_RESOURCE_GROUP
-PUBLIC_IP=$(az network public-ip create --resource-group $NODE_RESOURCE_GROUP --name dotnetconfdemoIP --allocation-method static --dns-name dotnetconfdemo --query publicIp.ipAddress -o tsv)
+PUBLIC_IP=$(az network public-ip create --resource-group $NODE_RESOURCE_GROUP --name dotnetconfdemoIP --sku Standard --allocation-method static --dns-name dotnetconfdemo --query publicIp.ipAddress -o tsv)
 # PUBLIC_IP=$(az network public-ip show --resource-group $NODE_RESOURCE_GROUP --name dotnetconfdemoIP --query ipAddress -o tsv)
 echo $PUBLIC_IP
 
